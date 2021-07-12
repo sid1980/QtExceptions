@@ -24,6 +24,11 @@ jobs:
       brew install ninja
       echo "CXX=g++" >> $GITHUB_ENV
       echo "CMAKE_GENERATOR=Ninja" >> $GITHUB_ENV
+      g++ -v
+      ninja --version
+      cmake -version
+      echo ${CXX}
+      echo ${CMAKE_GENERATOR}
      
    - name: build
      run: |
