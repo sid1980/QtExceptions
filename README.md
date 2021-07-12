@@ -11,69 +11,65 @@
 
 ---
 
-RunTimeErrorクラス
+- RunTimeErrorクラス
 
 本例外クラスはC++stlの一つであるstd::runtime_errorクラスをQt風に書いたクラスである。
 
-```c++
-	#include <QtExceptions/qt_exceptions.hpp>
-	#include <QTextStream>
+注意:whatメソッドの戻り値はQStringではなくconst char*であるためwindowsで使用する場合
 
-	auto qcout = QTextStream(stdout);
-		
-	void happend()noexcept(false)
+日本語を使用すると文字化けを起こすためエラー内容は英語で書かねばならない。
+
+```c++
+#include <QtExceptions/qt_exceptions.hpp>
+#include <QTextStream>
+
+QTextStream qcout(stdout);
+
+void happend()noexcept(false)
+{
+    auto err = QtExceptions::RunTimeError("test");
+	err.raise();
+}
+
+int main()
+{
+	try
 	{
-		auto err = QtExceptions::RunTimeError("err_reason");
-		err.raise()		
-	}
-		
-	int main()
+		happend();
+	}catch(const QtExceptions::RunTimeError& err)
 	{
-		try
-		{
-			happend();
-		}catch(const QtExceptions::RunTimeError& err)
-		{
-			qcout << err.what() << Qt::endl;
-		}
+		qcout << err.what() << Qt::endl;
 	}
+}
 ```
 
 ---
 
-# ビルドやリンク
+## ビルドやリンク
 
 ビルド方法
 
 ```term
-	cd [本ライブラリへのパス]
-	mkdir ./build
-	cd ./build
-	cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="path/to/install/this/library"
-	ninja
+cd [本ライブラリへのパス]
+mkdir ./build
+cd ./build
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="path/to/install/this/library"
+ninja
 ```
-or
+
+
+---
+
+## インストール方法
 
 ```term
-	cd [本ライブラリへのパス]
-	mkdir ./build
-	cd ./build
-	cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="path/to/install/this/library"
-	ninja
+ninja install
 ```
 
 
-インストール方法
+---
 
-```term
-	ninja install
-```
-or
-```term
-	make install
-```
-
-詳細単体テスト方法
+## 詳細単体テスト方法
 
 ```term
 	ctest -V
@@ -85,7 +81,11 @@ or
 	ctest QtExceptionsTest -V
 ```
 
-簡易単体テスト方法
+
+
+---
+
+## 簡易単体テスト方法
 
 ```term
 	ctest
@@ -97,7 +97,11 @@ or
 	ctest QtExceptionsTest
 ```
 
-CMakeを用いたリンク方法
+
+
+---
+
+## CMakeを用いたリンク方法
 
 本ライブラリをCMakeを用いてリンクするにはインストール後
 
