@@ -113,3 +113,19 @@ or
 を使用するかインストールせずにadd_subdirectoryコマンドで本プロジェクトのディレクトリを
 呼び出して上記同様target_link_librariesでリンクすればよい。
 
+---
+
+## 依存関係
+
+- Qt 5.15.2以降
+- c++11以降
+
+---
+
+## ライセンス
+
+GNU LGPL v3
+
+Using [Qt](https://www.qt.io/ja-jp/)
+
+[Qt5 GitHub](https://github.com/qt/qt5)
