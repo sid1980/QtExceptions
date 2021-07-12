@@ -1,0 +1,6 @@
+C:/Users/Syple/Desktop/a/lib/libQtExceptions.a
+C:/Users/Syple/Desktop/a/lib/cmake/QtExceptions/QtExceptions-config.cmake
+C:/Users/Syple/Desktop/a/lib/cmake/QtExceptions/QtExceptions-config-release.cmake
+C:/Users/Syple/Desktop/a/include/QtExceptions/qt_exceptions.hpp
+C:/Users/Syple/Desktop/a/include/QtExceptions/runtime_error.hpp
+C:/Users/Syple/Desktop/a/QtExceptionsTest.exe

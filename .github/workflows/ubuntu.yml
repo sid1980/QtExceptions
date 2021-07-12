@@ -1,0 +1,35 @@
+name: ubuntu_ci
+
+on: push
+
+jobs:
+ linux_ci_job:
+  runs-on: ubuntu-latest 
+   
+  steps:
+   - name: checkout source code
+     uses: actions/checkout@master
+     
+   - name: Install Qt
+     uses: jurplel/install-qt-action@v2
+     with:
+      version: '5.15.2'
+      host: 'linux'
+      target: 'desktop'
+      dir: '${{ github.workspace }}/example/'
+     
+   - name: install and set env
+     run: |
+      sudo apt -y update
+      sudo apt install g++-10
+      sudo apt -y install ninja-build
+      echo "CXX=g++-10" >> $GITHUB_ENV
+      echo "CMAKE_GENERATOR=Ninja" >> $GITHUB_ENV
+     
+   - name: build
+     run: |
+      mkdir ./build
+      cd ./build
+      cmake ..
+      ninja
+      ctest -V

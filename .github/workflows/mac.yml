@@ -1,11 +1,10 @@
-name: windows_ci
+name: mac_ci
 
 on: push
 
 jobs:
- windows_ci_job:
-  name: windows build
-  runs-on: windows-latest
+ mac_ci_job:
+  runs-on: macos-latest
    
   steps:
    - name: checkout source code
@@ -15,16 +14,15 @@ jobs:
      uses: jurplel/install-qt-action@v2
      with:
       version: '5.15.2'
-      host: 'windows'
+      host: 'mac'
       target: 'desktop'
-      arch: 'win64_mingw81'
       dir: '${{ github.workspace }}/example/'
      
    - name: install and set env
      run: |
-      choco install mingw
-      choco install ninja
-      echo "CXX=g++" >> $env:GITHUB_ENV
+      brew install g++-10
+      brew install ninja-build
+      echo "CXX=g++-10" >> $env:GITHUB_ENV
       echo "CMAKE_GENERATOR=Ninja" >> $env:GITHUB_ENV
       echo $env:myenv
      
