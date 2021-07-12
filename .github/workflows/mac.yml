@@ -27,7 +27,7 @@ jobs:
      
    - name: build
      run: |
-      sudo mkdir ./build
+      mkdir ./build
       cd ./build
       cmake ..
       ninja
