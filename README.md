@@ -1,7 +1,8 @@
 # QtExceptionsライブラリ
 
-- [![ubuntu_ci](https://github.com/DIODEELEGIA/QtExceptions/actions/workflows/ubuntu_ci.yml/badge.svg)](https://github.com/DIODEELEGIA/QtExceptions/actions/workflows/ubuntu_ci.yml)
-- [![windows_ci](https://github.com/DIODEELEGIA/QtExceptions/actions/workflows/windows_ci.yml/badge.svg)](https://github.com/DIODEELEGIA/QtExceptions/actions/workflows/windows_ci.yml)
+- [![mac_ci](https://github.com/DIODEELEGIA/QtExceptions/actions/workflows/mac.yml/badge.svg)](https://github.com/DIODEELEGIA/QtExceptions/actions/workflows/mac.yml)
+- [![windows_ci](https://github.com/DIODEELEGIA/QtExceptions/actions/workflows/windows.yml/badge.svg)](https://github.com/DIODEELEGIA/QtExceptions/actions/workflows/windows.yml)
+- [![ubuntu_ci](https://github.com/DIODEELEGIA/QtExceptions/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/DIODEELEGIA/QtExceptions/actions/workflows/ubuntu.yml)
 
 # 備考
 
