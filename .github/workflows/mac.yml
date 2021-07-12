@@ -20,15 +20,15 @@ jobs:
      
    - name: install and set env
      run: |
-      brew install g++-10
+      brew install gcc
       brew install ninja-build
-      echo "CXX=g++-10" >> $env:GITHUB_ENV
+      echo "CXX=g++" >> $env:GITHUB_ENV
       echo "CMAKE_GENERATOR=Ninja" >> $env:GITHUB_ENV
       echo $env:myenv
      
    - name: build
      run: |
-      mkdir ./build
+      sudo mkdir ./build
       cd ./build
       cmake ..
       ninja
