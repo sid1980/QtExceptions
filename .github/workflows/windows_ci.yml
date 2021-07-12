@@ -1,0 +1,37 @@
+name: windows_ci
+
+on: push
+
+jobs:
+ windows_ci_job:
+  name: windows build
+  runs-on: windows-latest
+   
+  steps:
+   - name: checkout source code
+     uses: actions/checkout@master
+     
+   - name: Install Qt
+     uses: jurplel/install-qt-action@v2
+     with:
+      version: '5.15.2'
+      host: 'windows'
+      target: 'desktop'
+      arch: 'win64_mingw81'
+      dir: '${{ github.workspace }}/example/'
+     
+   - name: install and set env
+     run: |
+      choco install mingw
+      choco install ninja
+      echo "CXX=g++" >> $env:GITHUB_ENV
+      echo "CMAKE_GENERATOR=Ninja" >> $env:GITHUB_ENV
+      echo $env:myenv
+     
+   - name: build
+     run: |
+      mkdir ./build
+      cd ./build
+      cmake ..
+      ninja
+      ctest -V
