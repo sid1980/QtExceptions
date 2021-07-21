@@ -15,7 +15,8 @@
     along with QtExceptions.  If not, see <https://www.gnu.org/licenses/>.
 *///-----------------------------------------------------------------------------
 #include <QTest>
-#include <run_time_error_test.hpp>
+#include <run_time_error.hpp>
+#include <db_error.hpp>
 
 int main(int argc, char** argv)
 {   
@@ -25,10 +26,11 @@ int main(int argc, char** argv)
         RunTimeErrorTest tc;
         status |= QTest::qExec(&tc, argc, argv);
     }
-    //{
-    //    MyTest2 tc;
-    //    status |= QTest::qExec(&tc, argc, argv);
-    //}
+    
+    {
+        DbErrorTest tc;
+        status |= QTest::qExec(&tc, argc, argv);
+    }
     
     return status;
 }

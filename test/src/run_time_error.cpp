@@ -14,7 +14,7 @@
     You should have received a copy of the GNU Lesser General Public License
     along with QtExceptions.  If not, see <https://www.gnu.org/licenses/>.
 *///-----------------------------------------------------------------------------
-#include <run_time_error_test.hpp>
+#include <run_time_error.hpp>
 #include <QtExceptions/qt_exceptions.hpp>
 #include <QString>
 #include <cstring>

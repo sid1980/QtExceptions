@@ -17,3 +17,4 @@
 #pragma once
 
 #include "runtime_error.hpp"
+#include "db_error.hpp"

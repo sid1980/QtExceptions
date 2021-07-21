@@ -44,6 +44,49 @@ int main()
 }
 ```
 
+
+
+- DbErrorクラス
+
+本例外クラスはQSqlQueryでエラーが発生した場合その例外を発生させることを想定して作成されたクラスです。
+
+```c++
+#include <QtExceptions/qt_exceptions.hpp>
+#include <QTextStream>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
+
+QTextStream qcout(stdout);
+
+void happend(QsqlQuery& quiery)noexcept(false)
+{
+    auto query = QSqlQuery(db);
+    auto err = QtExceptions::DbError(query);
+	err.raise();
+}
+
+int main()
+{
+    auto db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("./test.db");
+    db.open();
+    auto query = QSqlQuery(db);
+    query.exec("hogehoge");
+    
+	try
+	{
+		happend(query);
+	}catch(const QtExceptions::DbError& err)
+	{
+		qcout << err.what() << Qt::endl;
+         qcout << err.type() << Qt::endl;
+	}
+}
+```
+
+
+
 ---
 
 ## ビルドやリンク

@@ -8,8 +8,12 @@ find_package(Qt5 COMPONENTS Core Test REQUIRED)
 
 add_executable(${TEST_NAME}
 	${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/run_time_error_test.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/include/run_time_error_test.hpp
+	
+	${CMAKE_CURRENT_SOURCE_DIR}/src/run_time_error.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/include/run_time_error.hpp
+	
+	${CMAKE_CURRENT_SOURCE_DIR}/src/db_error.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/include/db_error.hpp
 )
 
 target_link_libraries(${TEST_NAME} PRIVATE 
@@ -36,7 +40,7 @@ set_property(TARGET ${TEST_NAME} PROPERTY AUTOMOC ON)
 set_property(TARGET ${TEST_NAME} PROPERTY AUTORCC ON)
 set_property(TARGET ${TEST_NAME} PROPERTY CXX_STANDARD 11)
 set_property(TARGET ${TEST_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
-set_property(TARGET ${TEST_NAME} PROPERTY COMPILE_FLAGS -Wall)
+set_property(TARGET ${TEST_NAME} PROPERTY COMPILE_FLAGS "${COMPILE_FLAGS} -Wall -Wextra")
 install(TARGETS ${TEST_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 if(WIN32)

@@ -4,12 +4,16 @@ set(LIB_NAME QtExceptions)
 
 project(${LIB_NAME} LANGUAGES CXX)
 
-find_package(Qt5 COMPONENTS Core REQUIRED)
+find_package(Qt5 COMPONENTS Core Sql REQUIRED)
 
 add_library(${LIB_NAME} STATIC
 	${CMAKE_CURRENT_SOURCE_DIR}/include/QtExceptions/qt_exceptions.hpp
+	
 	${CMAKE_CURRENT_SOURCE_DIR}/include/QtExceptions/runtime_error.hpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/runtime_error.cpp
+	
+	${CMAKE_CURRENT_SOURCE_DIR}/include/QtExceptions/db_error.hpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/db_error.cpp
 )
 
 include(GNUInstallDirs)
@@ -25,6 +29,7 @@ target_include_directories(${LIB_NAME} PUBLIC
 
 target_link_libraries(${LIB_NAME} PUBLIC
 	Qt5::Core
+	Qt5::Sql
 )
 
 install(TARGETS ${LIB_NAME}
@@ -45,6 +50,6 @@ set_property(TARGET ${LIB_NAME} PROPERTY AUTOMOC ON)
 set_property(TARGET ${LIB_NAME} PROPERTY AUTORCC ON)
 set_property(TARGET ${LIB_NAME} PROPERTY CXX_STANDARD 11)
 set_property(TARGET ${LIB_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
-set_property(TARGET ${LIB_NAME} PROPERTY COMPILE_FLAGS -Wall)
+set_property(TARGET ${LIB_NAME} PROPERTY COMPILE_FLAGS "${COMPILE_FLAGS} -Wall -Wextra")
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)
